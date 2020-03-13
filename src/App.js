@@ -1,24 +1,98 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Table } from 'antd';
+import 'antd/dist/antd.css';
 
+const _columns = [
+  {
+    title: 'Full Name',
+    width: 100,
+    dataIndex: 'name',
+    key: 'name',
+    // fixed: 'left',
+  },
+  {
+    title: 'Age',
+    width: 100,
+    dataIndex: 'age',
+    key: 'age',
+    // fixed: 'left',
+  },
+  {
+    title: 'Column 1',
+    dataIndex: 'address',
+    key: '1',
+    width: 150,
+  },
+  {
+    title: 'Column 2',
+    dataIndex: 'address',
+    key: '2',
+    width: 150,
+  },
+  {
+    title: 'Column 3',
+    dataIndex: 'address',
+    key: '3',
+    width: 150,
+  },
+  {
+    title: 'Column 4',
+    dataIndex: 'address',
+    key: '4',
+    width: 150,
+  },
+  {
+    title: 'Column 5',
+    dataIndex: 'address',
+    key: '5',
+    width: 150,
+  },
+  {
+    title: 'Column 6',
+    dataIndex: 'address',
+    key: '6',
+    width: 150,
+  },
+  {
+    title: 'Column 7',
+    dataIndex: 'address',
+    key: '7',
+    width: 150,
+  },
+  { title: 'Column 8', dataIndex: 'address', key: '8' },
+  {
+    title: 'Action',
+    key: 'operation',
+    fixed: 'right',
+    width: 100,
+    render: () => <a href>action</a>,
+  },
+];
+
+const data = [];
+for (let i = 0; i < 100; i++) {
+  data.push({
+    key: i,
+    name: `Edrward ${i}`,
+    age: 32,
+    address: `London Park no. ${i}`,
+    myTest: `Test ${i}`
+  });
+}
 function App() {
+  const [ columns, setColumns ] = React.useState(_columns);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ width: 850 }}>
+      <button onClick={() => setColumns([
+        {
+          title: 'My Test',
+          width: 100,
+          dataIndex: 'myTest',
+          key: 'myTest',
+        },
+        ..._columns
+      ])}>追加一列</button>
+      <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
     </div>
   );
 }
